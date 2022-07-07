@@ -1,7 +1,7 @@
 import { prisma } from "../../prisma";
-import { NoteRepository, NotesRequestData } from "../NotesRepository";
+import { NotesRepository, NotesRequestData } from "../NotesRepository";
 
-export class PrismaNotesRepository implements NoteRepository {
+export class PrismaNotesRepository implements NotesRepository {
   async getNotes() {
     await prisma.notes.findMany();
   }

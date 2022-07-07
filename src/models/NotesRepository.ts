@@ -4,7 +4,7 @@ export interface NotesRequestData {
   content: string;
 }
 
-export interface NoteRepository {
+export interface NotesRepository {
   getNotes: () => Promise<void>;
   createNote: (data: NotesRequestData) => Promise<void>;
   editNote: (data: NotesRequestData) => Promise<void>;
