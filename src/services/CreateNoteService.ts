@@ -14,7 +14,7 @@ export class CreateNoteService {
       throw new Error("Content is required to create a note!");
     }
 
-    await this.notesRepository.createNote({
+    await this.notesRepository.createNote!({
       title,
       content,
     });
