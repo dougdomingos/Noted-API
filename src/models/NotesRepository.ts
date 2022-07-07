@@ -5,8 +5,8 @@ export interface NotesRequestData {
 }
 
 export interface NotesRepository {
-  getNotes: () => Promise<void>;
-  createNote: (data: NotesRequestData) => Promise<void>;
-  editNote: (data: NotesRequestData) => Promise<void>;
-  deleteNote: (noteID: number) => Promise<void>;
+  getNotes?: () => Promise<void>;
+  createNote?: (data: NotesRequestData) => Promise<void>;
+  editNote?: (data: NotesRequestData) => Promise<void>;
+  deleteNote?: (noteID: number) => Promise<void>;
 }
