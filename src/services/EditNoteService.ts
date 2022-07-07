@@ -6,7 +6,7 @@ export class EditNoteService {
   async execute(request: NotesRequestData) {
     const { noteID, title, content } = request;
 
-    if (!noteID) {
+    if (noteID == null) {
       throw new Error("Note ID must be provided!")
     }
 
