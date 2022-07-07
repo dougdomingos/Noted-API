@@ -27,9 +27,10 @@ export class PrismaNotesRepository implements NoteRepository {
       },
     });
   }
+
   async deleteNote(noteID: number) {
     await prisma.notes.delete({
-      where: { id: noteID }
-    })
+      where: { id: noteID },
+    });
   }
 }

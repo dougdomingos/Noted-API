@@ -1,5 +1,5 @@
 export interface NotesRequestData {
-  noteID?: number
+  noteID?: number;
   title: string;
   content: string;
 }
