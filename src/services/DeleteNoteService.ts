@@ -8,6 +8,10 @@ export class DeleteNoteService {
       throw new Error("Note ID must be provided!");
     }
 
-    await this.notesRepository.deleteNote!(id);
+    if (isNaN(id) || id < 0) {
+      throw new Error("Note ID must be a non-negative number!")
+    }
+
+    await this.notesRepository.deleteNote!(Number(id));
   }
 }
