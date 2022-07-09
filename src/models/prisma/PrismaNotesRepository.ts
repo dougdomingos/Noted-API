@@ -15,7 +15,7 @@ export class PrismaNotesRepository implements NotesRepository {
     });
   }
 
-  async editNote({ noteID, title, content }: Note) {
+  async editNote({ id, title, content }: Note) {
     await prisma.notes.update({
       data: {
         title,
@@ -23,14 +23,14 @@ export class PrismaNotesRepository implements NotesRepository {
       },
 
       where: {
-        id: noteID,
+        id: id,
       },
     });
   }
 
-  async deleteNote(noteID: number) {
+  async deleteNote(id: number) {
     await prisma.notes.delete({
-      where: { id: noteID },
+      where: { id: id },
     });
   }
 }

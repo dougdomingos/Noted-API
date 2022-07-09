@@ -8,7 +8,7 @@ describe("Delete a note", () => {
   it("should sucessfully delete a note", async () => {
     await expect(
       deleteNote.execute({
-        noteID: 0,
+        id: 0,
       })
     ).resolves.not.toThrow();
 

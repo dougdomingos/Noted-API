@@ -8,7 +8,7 @@ describe("Edit a note", () => {
   it("should sucessfully edit a note", async () => {
     await expect(
       editNote.execute({
-        noteID: 0,
+        id: 0,
         title: "New title",
         content: "I'm an edited note!",
       })
@@ -20,7 +20,7 @@ describe("Edit a note", () => {
   it("should be able to edit the title of a note", async () => {
     await expect(
       editNote.execute({
-        noteID: 1,
+        id: 1,
         title: "Editing only the title!",
         content: "",
       })
@@ -32,7 +32,7 @@ describe("Edit a note", () => {
   it("should be able to edit the content of a note", async () => {
     await expect(
       editNote.execute({
-        noteID: 2,
+        id: 2,
         title: "",
         content: "Now only the content!",
       })
@@ -44,7 +44,7 @@ describe("Edit a note", () => {
   it("should not be able to edit a note when no values are provided", async () => {
     await expect(
       editNote.execute({
-        noteID: 14,
+        id: 14,
         title: "",
         content: "",
       })

@@ -4,9 +4,9 @@ export class EditNoteService {
   constructor(private notesRepository: NotesRepository) {}
 
   async execute(request: Note) {
-    const { noteID, title, content } = request;
+    const { id, title, content } = request;
 
-    if (noteID == null) {
+    if (id == null) {
       throw new Error("Note ID must be provided!");
     }
 
@@ -15,7 +15,7 @@ export class EditNoteService {
     }
 
     await this.notesRepository.editNote!({
-      noteID,
+      id,
       title,
       content,
     });
