@@ -3,11 +3,21 @@ import { Request, Response } from "express";
 import { database } from "./models/database";
 
 import { CreateNoteService } from "./services/CreateNoteService";
+import { GetNotesService } from "./services/GetNotesService";
 
 export const routes = express.Router();
 
 routes.get("/notes", (req: Request, res: Response): void => {
-  res.send("See all notes");
+  const getNotesService = new GetNotesService(database);
+
+  getNotesService
+    .execute()
+    .then((noteList) => {
+      res.status(200).json(noteList);
+    })
+    .catch((error) => {
+      res.status(503).json({ msg: error });
+    });
 });
 
 routes.post("/notes/new", (req: Request, res: Response): void => {
@@ -24,7 +34,7 @@ routes.post("/notes/new", (req: Request, res: Response): void => {
     res.status(400).json({ msg: error });
   }
 
-  res.status(201).json({msg: "Operation sucessful!"});
+  res.status(201).json({ msg: "Operation sucessful!" });
 });
 
 routes.put("/notes/edit", (req: Request, res: Response): void => {

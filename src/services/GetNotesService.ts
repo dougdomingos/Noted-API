@@ -4,6 +4,6 @@ export class GetNotesService {
   constructor(private notesRepository: NotesRepository) {}
 
   async execute() {
-    const notes = await this.notesRepository.getNotes!();
+    return await this.notesRepository.getNotes!();
   }
 }
