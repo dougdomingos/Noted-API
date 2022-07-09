@@ -1,8 +1,10 @@
 import express from "express";
 import { Request, Response } from "express";
+
 import { database } from "./models/database";
 
 import { CreateNoteService } from "./services/CreateNoteService";
+import { DeleteNoteService } from "./services/DeleteNoteService";
 import { GetNotesService } from "./services/GetNotesService";
 
 export const routes = express.Router();
@@ -41,6 +43,17 @@ routes.put("/notes/edit", (req: Request, res: Response): void => {
   res.send("Edit a note");
 });
 
-routes.delete("/notes/delete", (req: Request, res: Response): void => {
-  res.send("Delete a note");
+routes.delete("/notes/delete/:id", (req: Request, res: Response): void => {
+  const deleteNoteService = new DeleteNoteService(database);
+
+  const id = req.params.id;
+
+  try {
+    // @ts-ignore
+    deleteNoteService.execute({ id: id });
+  } catch (error) {
+    res.status(400).json({ msg: error });
+  }
+
+  res.status(200).json({ msg: "Note sucessfully deleted!" });
 });
