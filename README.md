@@ -20,9 +20,18 @@ To create a build, run:
 
 ## Routes
 The application has four routes:
-- "`/notes`": display all the notes with a **GET** request
-- "`/notes/new`": create a new note with a **POST** request
-- "`/notes/edit`": edit a note with a **PUT** request
-- "`/notes/delete`": delete a note with a **DELETE** request
-
-As of now, none of these routes where implemented yet.
+- `/notes`: display all the notes with a **GET** request
+    - No query params required
+    - Sucessful requests return status code 200 and an array of Note objects
+- `/notes/new`: create a new note with a **POST** request
+    - Requires `title` and `content` params
+    - Sucessful requests return status code 201 and a sucess message
+    - Failed requests return status code 400 and a error message
+- `/notes/edit`: edit a note with a **PUT** request
+    - Requires `id`, `title` and/or `content`
+    - Sucessful requests return status code 200 and a sucess message
+    - Failed requests return status code 400 and a error message
+- `/notes/delete`: delete a note with a **DELETE** request
+    - Requires `id` parameter only
+    - Sucessful requests return status code 200 and a sucess message
+    - Failed requests return status code 400 and a error message
