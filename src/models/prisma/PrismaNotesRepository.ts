@@ -1,12 +1,12 @@
 import { prisma } from "../../prisma";
-import { NotesRepository, NotesRequestData } from "../NotesRepository";
+import { NotesRepository, Note } from "../NotesRepository";
 
 export class PrismaNotesRepository implements NotesRepository {
   async getNotes() {
     await prisma.notes.findMany();
   }
 
-  async createNote({ title, content }: NotesRequestData) {
+  async createNote({ title, content }: Note) {
     await prisma.notes.create({
       data: {
         title,
@@ -15,7 +15,7 @@ export class PrismaNotesRepository implements NotesRepository {
     });
   }
 
-  async editNote({ noteID, title, content }: NotesRequestData) {
+  async editNote({ noteID, title, content }: Note) {
     await prisma.notes.update({
       data: {
         title,

@@ -1,9 +1,9 @@
-import { NotesRepository, NotesRequestData } from "../models/NotesRepository";
+import { NotesRepository, Note } from "../models/NotesRepository";
 
 export class EditNoteService {
   constructor(private notesRepository: NotesRepository) {}
 
-  async execute(request: NotesRequestData) {
+  async execute(request: Note) {
     const { noteID, title, content } = request;
 
     if (noteID == null) {
