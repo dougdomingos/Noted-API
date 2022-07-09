@@ -1,7 +1,6 @@
 import express from "express";
 import { Request, Response } from "express";
-
-import { PrismaNotesRepository } from "./models/prisma/PrismaNotesRepository";
+import { database } from "./models/database";
 
 import { CreateNoteService } from "./services/CreateNoteService";
 
@@ -12,8 +11,7 @@ routes.get("/notes", (req: Request, res: Response): void => {
 });
 
 routes.post("/notes/new", (req: Request, res: Response): void => {
-  const notesRepository = new PrismaNotesRepository();
-  const createNoteService = new CreateNoteService(notesRepository);
+  const createNoteService = new CreateNoteService(database);
 
   const { title, content } = req.body;
 
