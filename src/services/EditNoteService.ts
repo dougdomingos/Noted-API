@@ -10,12 +10,16 @@ export class EditNoteService {
       throw new Error("Note ID must be provided!");
     }
 
+    if (isNaN(id) || id < 0) {
+      throw new Error("Note ID must be a non-negative number!")
+    }
+
     if (!title && !content) {
       throw new Error("Nothing to edit, since no values were provided.");
     }
 
     await this.notesRepository.editNote!({
-      id,
+      id: Number(id),
       title,
       content,
     });

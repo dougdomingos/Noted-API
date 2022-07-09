@@ -41,12 +41,33 @@ describe("Edit a note", () => {
     expect(editNoteSpy).toHaveBeenCalled();
   });
 
+  it("should not validate a non-number ID value", async () => {
+    await expect(
+      editNote.execute({
+        // @ts-ignore
+        id: "note-1",
+        title: "Sample title",
+        content: "Sample content",
+      })
+    ).rejects.toThrow();
+  });
+
+  it("should not validate a negative ID value", async () => {
+    await expect(
+      editNote.execute({
+        id: -1,
+        title: "Sample title",
+        content: "Sample content",
+      })
+    ).rejects.toThrow();
+  });
+
   it("should not be able to edit a note when no values are provided", async () => {
     await expect(
       editNote.execute({
         id: 14,
-        title: "",
-        content: "",
+        title: "Sample title",
+        content: "Sample content",
       })
     ).rejects.toThrow();
   });
