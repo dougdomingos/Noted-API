@@ -3,7 +3,8 @@ import { NotesRepository, Note } from "../NotesRepository";
 
 export class PrismaNotesRepository implements NotesRepository {
   async getNotes() {
-    await prisma.notes.findMany();
+    const noteArray = await prisma.notes.findMany();
+    return noteArray;
   }
 
   async createNote({ title, content }: Note) {
