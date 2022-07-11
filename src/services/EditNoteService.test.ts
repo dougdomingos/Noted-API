@@ -66,8 +66,8 @@ describe("Edit a note", () => {
     await expect(
       editNote.execute({
         id: 14,
-        title: "Sample title",
-        content: "Sample content",
+        title: "",
+        content: "",
       })
     ).rejects.toThrow();
   });
