@@ -43,13 +43,12 @@ routes.post("/notes/new", (req: Request, res: Response): void => {
 routes.put("/notes/edit/:id", (req: Request, res: Response): void => {
   const editNoteService = new EditNoteService(database);
 
-  const id = req.params.id;
+  const id = +req.params.id;
   const { title, content } = req.body;
 
   try {
     editNoteService.execute({
-      // @ts-ignore
-      id: id,
+      id,
       title,
       content,
     });
@@ -63,11 +62,10 @@ routes.put("/notes/edit/:id", (req: Request, res: Response): void => {
 routes.delete("/notes/delete/:id", (req: Request, res: Response): void => {
   const deleteNoteService = new DeleteNoteService(database);
 
-  const id = req.params.id;
+  const id = +req.params.id;
 
   try {
-    // @ts-ignore
-    deleteNoteService.execute({ id: id });
+    deleteNoteService.execute({ id });
   } catch (error) {
     res.status(400).json({ msg: error });
   }
